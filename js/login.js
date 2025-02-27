@@ -1,9 +1,9 @@
 document.getElementById('loginForm').addEventListener('submit', function(event) {
     event.preventDefault();
     const users = {
-        'user1': 'password1',
-        'user2': 'password2',
-        'user3': 'password3'
+        'AhmedObied': '32904617',
+        'RahmaSaad': '12345678',
+        'quest': '00000000'
     };
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
