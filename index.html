@@ -1,67 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Laugh Factory</title>
-  <style>
-    body {
-      background-color: #f0f8ff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      font-family: Arial, sans-serif;
-    }
-    .container {
-      text-align: center;
-    }
-    .joke {
-      margin-top: 20px;
-      font-size: 1.5em;
-      color: #2f4f4f;
-    }
-    .laugh-button {
-      padding: 10px 20px;
-      font-size: 1.2em;
-      color: #fff;
-      background-color: #ff4500;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .laugh-button:hover {
-      background-color: #ff6347;
-    }
-    .icon {
-      width: 50px;
-      height: 50px;
-      margin-top: 20px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <div class="container">
-    <img src="icon.png" alt="Laugh Icon" class="icon">
-    <h1>Welcome to the Laugh Factory!</h1>
-    <button class="laugh-button" onclick="tellJoke()">Get a Joke</button>
-    <div class="joke" id="jokeDisplay">Press the button to get a random joke!</div>
-  </div>
-
-  <script>
-    const jokes = [
-      "Why don’t scientists trust atoms? Because they make up everything!",
-      "Why did the scarecrow win an award? Because he was outstanding in his field!",
-      "Why don’t skeletons fight each other? They don’t have the guts!",
-      "What do you call fake spaghetti? An impasta!",
-      "How does a penguin build its house? Igloos it together!"
-    ];
-
-    function tellJoke() {
-      const randomIndex = Math.floor(Math.random() * jokes.length);
-      document.getElementById('jokeDisplay').innerText = jokes[randomIndex];
-    }
-  </script>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+    <script src="js/scripts.js"></script>
 </body>
 </html>
