@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple File Upload</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
+        #drop-area { border: 2px dashed #007bff; padding: 20px; margin: 20px auto; width: 50%; }
+        #status { margin-top: 10px; font-weight: bold; }
+        #save-btn { display: none; margin-top: 10px; padding: 10px; background: green; color: white; border: none; cursor: pointer; }
+        #connection-status { color: red; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <h1>Simple Upload Page</h1>
+    <img src="photo.jpg" alt="Photo" width="300"> <!-- Display a photo -->
+    
+    <div id="drop-area">Drop a folder here</div>
+    <button id="save-btn">Save</button>
+    
+    <p id="status">No folder uploaded</p>
+    <p>Server Status: <span id="connection-status">Disconnected</span></p>
+
+    <script>
+        const dropArea = document.getElementById("drop-area");
+        const saveBtn = document.getElementById("save-btn");
+        const statusText = document.getElementById("status");
+        const connStatus = document.getElementById("connection-status");
+        let filesToUpload = [];
+
+        // WebSocket for real-time connection indicator
+        const socket = new WebSocket("ws://" + window.location.hostname + ":3000");
+
+        socket.onopen = () => connStatus.textContent = "Connected";
+        socket.onclose = () => connStatus.textContent = "Disconnected";
+
+        // Handle drag-and-drop file selection
+        dropArea.addEventListener("dragover", (e) => { e.preventDefault(); dropArea.style.background = "#ddd"; });
+        dropArea.addEventListener("dragleave", () => dropArea.style.background = "white");
+        dropArea.addEventListener("drop", (e) => {
+            e.preventDefault();
+            dropArea.style.background = "white";
+            filesToUpload = [];
+
+            for (const item of e.dataTransfer.items) {
+                if (item.kind === "file") {
+                    const file = item.getAsFile();
+                    filesToUpload.push(file);
+                }
+            }
+
+            if (filesToUpload.length > 0) {
+                statusText.textContent = `${filesToUpload.length} files ready to upload`;
+                saveBtn.style.display = "inline-block";
+            }
+        });
+
+        // Handle Save Button Click
+        saveBtn.addEventListener("click", () => {
+            if (filesToUpload.length === 0) return;
+            const formData = new FormData();
+
+            filesToUpload.forEach(file => formData.append("files", file));
+            fetch("/upload", { method: "POST", body: formData })
+                .then(res => res.text())
+                .then(data => { alert(data); statusText.textContent = "Upload complete!"; })
+                .catch(err => alert("Upload failed!"));
+        });
+    </script>
+
+</body>
+</html>
