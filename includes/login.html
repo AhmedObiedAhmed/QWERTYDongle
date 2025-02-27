@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>Login - QWERTY Dongle Manager</title>
+    <link rel="stylesheet" href="css/login.css">
 </head>
 <body>
     <div class="login-container">
-        <h2>Login</h2>
+        <img src="assets/images/QWERTY_icon.png" alt="QWERTY Icon" class="icon">
+        <h1>Welcome to the QWERTY Dongle Manager Site!</h1>
         <form id="loginForm">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required>
@@ -16,7 +17,8 @@
             <input type="password" id="password" name="password" required>
             <button type="submit">Login</button>
         </form>
+        <p id="message"></p>
     </div>
-    <script src="js/scripts.js"></script>
+    <script src="js/login.js"></script>
 </body>
 </html>
