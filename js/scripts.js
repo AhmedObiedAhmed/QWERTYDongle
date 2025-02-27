@@ -9,7 +9,8 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
     // Simple client-side validation
     if (username === 'admin' && password === 'password') {
         alert('Login successful!');
-        // Redirect to another page or perform further actions
+        // Redirect to the success page
+        window.location.href = 'success.html';
     } else {
         alert('Invalid username or password. Please try again.');
     }
