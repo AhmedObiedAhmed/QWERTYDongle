@@ -3,22 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - QWERTY Dongle Manager</title>
-    <link rel="stylesheet" href="css/login.css">
+    <title>QWERTY Dongle Manager</title>
+    <link rel="stylesheet" href="assets/css/global.css">
+    <link rel="stylesheet" href="assets/css/login.css">
 </head>
 <body>
-    <div class="login-container">
-        <img src="assets/images/QWERTY.png" alt="QWERTY Icon" class="icon">
-        <h1>Welcome to the QWERTY Dongle Manager Site!</h1>
-        <form id="loginForm">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-            <button type="submit">Login</button>
-        </form>
-        <p id="message"></p>
+    <div class="container">
+        <img src="assets/img/QWERTY_Dongle.png" alt="QWERTY Dongle" class="dongle-img">
+        <h1>Welcome to the QWERTY Dongle Manager site!</h1>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="login()">Login</button>
+        <button onclick="takeTour()">Just Take a Tour</button>
+        <p id="error-msg"></p>
     </div>
-    <script src="js/login.js"></script>
+    <script src="assets/js/global.js"></script>
+    <script src="assets/js/login.js"></script>
 </body>
 </html>

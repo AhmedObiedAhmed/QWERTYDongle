@@ -1,0 +1,31 @@
+/* Login page-specific styles */
+.container {
+    text-align: center;
+    margin: auto;
+}
+
+.dongle-img {
+    width: 100px;
+    height: auto;
+}
+
+input, button {
+    display: block;
+    margin: 10px auto;
+    padding: 10px;
+    width: 80%;
+    max-width: 300px;
+    background-color: #fff;
+    color: #000;
+    border: none;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #aaa;
+}
+
+#error-msg {
+    color: red;
+    font-weight: bold;
+}
