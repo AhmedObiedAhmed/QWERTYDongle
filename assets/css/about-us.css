@@ -1,5 +1,127 @@
-/* About Us page-specific styles */
-.content p {
-    font-size: 18px;
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #121212; /* Dark background */
+    color: #ffffff; /* White text */
+    font-size: 18px; /* Slightly larger base font size */
+}
+
+header {
+    background-color: #1f1f1f; /* Darker header */
+    color: #ffffff;
+    padding: 1.5rem;
     text-align: center;
+    border-bottom: 2px solid #333333;
+}
+
+h1, h2 {
+    color: #f77f00; /* Orange accent color */
+}
+
+section {
+    margin: 2rem;
+    padding: 1.5rem;
+    background: #1e1e1e; /* Dark section background */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+    animation: fadeIn 3s ease-in-out; /* Slow down animation to 3 seconds */
+    opacity: 0; /* Start invisible */
+    animation-fill-mode: forwards; /* Keep final state of animation */
+}
+
+/* Delayed animations for staggered effect */
+section:nth-child(2) {
+    animation-delay: 0.9s; /* Adjust delay accordingly */
+}
+section:nth-child(3) {
+    animation-delay: 1.8s;
+}
+section:nth-child(4) {
+    animation-delay: 2.7s;
+}
+section:nth-child(5) {
+    animation-delay: 3.6s;
+}
+section:nth-child(6) {
+    animation-delay: 4.5s;
+}
+
+ul {
+    padding-left: 1.5rem;
+}
+
+footer {
+    background: #1f1f1f; /* Darker footer */
+    color: #ffffff;
+    text-align: center;
+    padding: 1rem 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    border-top: 2px solid #333333;
+}
+
+footer p {
+    font-size: 16px; /* Match footer text style */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px; /* Space between icon and text */
+    margin: 0;
+}
+
+.footer-icon {
+    width: 25px; /* Width of the circular frame */
+    height: 25%; /* Height of the circular frame */
+    border-radius: 50%; /* Crop the image into a circular shape */
+    object-fit: cover; /* Ensures the image fills the circular frame neatly */
+    background-color: #f77f00; /* Optional: Add background color to match the theme */
+}
+
+/* Add animation keyframes */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        font-size: 16px; /* Adjust font size for smaller screens */
+    }
+    section {
+        margin: 1rem;
+        padding: 1rem;
+    }
+    h1 {
+        font-size: 1.8rem;
+    }
+    h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 14px; /* Further adjust font size for extra-small screens */
+    }
+    h1 {
+        font-size: 1.5rem;
+    }
+    h2 {
+        font-size: 1.2rem;
+    }
+    section {
+        margin: 0.5rem;
+        padding: 0.8rem;
+    }
 }

@@ -12,7 +12,7 @@ function login() {
 
     if (validUsers[username] && validUsers[username] === password) {
         localStorage.setItem('isLoggedIn', 'true');
-        window.location.href = "pages/about-us.html";
+        window.location.href = "pages/file-manager.html";
     } else {
         errorMsg.textContent = "Invalid username or password. Please try again.";
     }

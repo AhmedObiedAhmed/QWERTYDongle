@@ -1,41 +1,57 @@
-// Function to load the sidebar component
-function loadSidebar() {
-    fetch('../components/sidebar.html')
-        .then(response => response.text())
-        .then(html => {
-            document.getElementById('sidebar-container').innerHTML = html;
+class Sidebar {
+    constructor(containerId, sidebarUrl) {
+        this.containerId = containerId; // Where the sidebar will be injected
+        this.sidebarUrl = sidebarUrl;  // URL for sidebar.html
+        this.sidebar = null;           // Reference to the sidebar element
+    }
 
-            // Check if user is logged in from localStorage
-            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    // Load the sidebar HTML content
+    load() {
+        fetch(this.sidebarUrl)
+            .then(response => response.text())
+            .then(html => {
+                // Inject the sidebar into the container
+                document.getElementById(this.containerId).innerHTML = html;
+                this.sidebar = document.getElementById('sidebar'); // Reference to the sidebar
+                this.initialize();
+            })
+            .catch(error => console.error('Error loading sidebar:', error));
+    }
 
-            // Show or hide "File Manager" based on login state
-            const fileManagerTab = document.getElementById('file-manager-tab');
-            if (fileManagerTab) {
-                fileManagerTab.style.display = isLoggedIn ? 'block' : 'none';
-            }
+    // Initialize sidebar functionality
+    initialize() {
+        // Setup toggle button functionality
+        const toggleButton = document.getElementById('sidebar-toggle');
+        if (toggleButton) {
+            toggleButton.addEventListener('click', () => {
+                this.sidebar.classList.toggle('hidden');
+            });
+        }
 
-            // Add event listeners only after sidebar is loaded
-            setupSidebarLinks();
-        })
-        .catch(error => console.error('Error loading sidebar:', error));
-}
+        // Check login state and manage "File Manager" tab visibility
+        const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+        const fileManagerTab = document.getElementById('file-manager-tab');
+        if (fileManagerTab) {
+            fileManagerTab.style.display = isLoggedIn ? 'block' : 'none';
+        }
 
-// Function to toggle sidebar visibility
-function toggleSidebar() {
-    const sidebar = document.getElementById('sidebar');
-    sidebar.classList.toggle('hidden');
-}
+        // Ensure sidebar retracts when a link is clicked
+        this.setupLinks();
+    }
 
-// Function to retract sidebar when a link is clicked
-function setupSidebarLinks() {
-    const sidebarLinks = document.querySelectorAll('#sidebar ul li a');
-    sidebarLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            const sidebar = document.getElementById('sidebar');
-            sidebar.classList.add('hidden');
+    // Add behavior for sidebar links
+    setupLinks() {
+        const links = document.querySelectorAll('#sidebar ul li a');
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                this.sidebar.classList.add('hidden');
+            });
         });
-    });
+    }
 }
 
-// Ensure sidebar loads when the page loads
-document.addEventListener('DOMContentLoaded', loadSidebar);
+// Usage example
+document.addEventListener('DOMContentLoaded', () => {
+    const sidebar = new Sidebar('sidebar-container', '../components/sidebar.html');
+    sidebar.load();
+});
